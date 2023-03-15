@@ -17,7 +17,7 @@ public:
         bool found = false;
         while(!q.empty()) {
             int sz = q.size();
-            for(int i = 0; i < sz; i += 1) {
+            while(sz--) {
                 TreeNode *node = q.front();
                 q.pop();
                 if(!node) {
