@@ -1,7 +1,6 @@
 class Encrypter {
 private:
     unordered_map<char,string> mp;
-    unordered_map<string,string> encryptedStrings;
     unordered_map<string,int> encryptedStringsCount;
     string getEncryptedString(string &s, bool store = true) {
         string ans;
@@ -10,7 +9,6 @@ private:
             ans += mp[c];
         }
         if(store) {
-            encryptedStrings[s] = ans;
             encryptedStringsCount[ans] += 1;
         }
         return ans;
