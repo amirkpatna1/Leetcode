@@ -10,43 +10,43 @@ class TrieNode {
 
 class Trie {
     public:
-    TrieNode *startNode;
-    Trie() {
-        this->startNode = new TrieNode();
-    }
-    
-    void insert(string word) {
-        TrieNode *temp = startNode;
-        for(int i = 0; i < word.size(); i += 1) {
-            if(!temp->nodes[word[i] - 'a']) {
-                temp->nodes[word[i] - 'a'] = new TrieNode();
-            }
-            temp = temp->nodes[word[i] - 'a'];
+        TrieNode *startNode;
+        Trie() {
+            this->startNode = new TrieNode();
         }
-        temp->isWord = true;
-    }
-    
-    bool search(string word) {
-        TrieNode *temp = startNode;
-        for(int i = 0; i < word.size(); i += 1) {
-            if(!temp->nodes[word[i] - 'a']) {
-                return false;
+
+        void insert(string word) {
+            TrieNode *temp = startNode;
+            for(int i = 0; i < word.size(); i += 1) {
+                if(!temp->nodes[word[i] - 'a']) {
+                    temp->nodes[word[i] - 'a'] = new TrieNode();
+                }
+                temp = temp->nodes[word[i] - 'a'];
             }
-            temp = temp->nodes[word[i] - 'a'];
+            temp->isWord = true;
         }
-        return temp && temp->isWord;
-    }
-    
-    bool startsWith(string word) {
-        TrieNode *temp = startNode;
-        for(int i = 0; i < word.size(); i += 1) {
-            if(!temp->nodes[word[i] - 'a']) {
-                return false;
+
+        bool search(string word) {
+            TrieNode *temp = startNode;
+            for(int i = 0; i < word.size(); i += 1) {
+                if(!temp->nodes[word[i] - 'a']) {
+                    return false;
+                }
+                temp = temp->nodes[word[i] - 'a'];
             }
-            temp = temp->nodes[word[i] - 'a'];
+            return temp && temp->isWord;
         }
-        return true;
-    }
+
+        bool startsWith(string word) {
+            TrieNode *temp = startNode;
+            for(int i = 0; i < word.size(); i += 1) {
+                if(!temp->nodes[word[i] - 'a']) {
+                    return false;
+                }
+                temp = temp->nodes[word[i] - 'a'];
+            }
+            return true;
+        }
 };
 
 
