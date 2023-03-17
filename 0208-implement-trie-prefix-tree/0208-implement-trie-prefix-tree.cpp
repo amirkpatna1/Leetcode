@@ -6,10 +6,6 @@ class TrieNode {
             this->nodes = vector<TrieNode*>(26);
             this->isWord = false;
         }
-        TrieNode(bool isWord) {
-            this->nodes = vector<TrieNode*>(26);
-            this->isWord = isWord;
-        }
 };
 
 class Trie {
