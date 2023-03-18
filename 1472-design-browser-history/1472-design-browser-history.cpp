@@ -13,14 +13,14 @@ public:
     }
     
     string back(int steps) {
-        if(backward.size())
+        if(!backward.empty())
             forwardDeque.push_front(currPage);
         while(backward.size() > 1 && steps > 1) {
             forwardDeque.push_front(backward.back());
             backward.pop_back();
             steps -= 1;
         }
-        if(backward.size()){
+        if(!backward.empty()){
             currPage = backward.back();
             backward.pop_back();
         }
@@ -28,14 +28,14 @@ public:
     }
     
     string forward(int steps) {
-        if(forwardDeque.size())
+        if(!forwardDeque.empty())
             backward.push_back(currPage);
         while(forwardDeque.size() > 1 && steps > 1) {
             backward.push_back(forwardDeque.front());
             forwardDeque.pop_front();
             steps -= 1;
         }
-        if(forwardDeque.size()){
+        if(!forwardDeque.empty()){
             currPage = forwardDeque.front();
             forwardDeque.pop_front();
         }
