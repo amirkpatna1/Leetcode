@@ -9,7 +9,7 @@ public:
     void visit(string url) {
         backward.push_back(currPage);
         currPage = url;
-        forwardDeque.clear();
+        forwardDeque = deque<string>();
     }
     
     string back(int steps) {
