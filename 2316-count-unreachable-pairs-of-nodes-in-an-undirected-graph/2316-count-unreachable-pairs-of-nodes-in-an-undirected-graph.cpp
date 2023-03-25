@@ -1,47 +1,33 @@
-typedef long long ll;
 class Solution {
 public:
-    
-    void countNodes(vector<vector<int>> &graph,int currNode,vector<bool> &vis,int &count) {
-        vis[currNode] = true;
-        for(int x : graph[currNode]) {
-            if(!vis[x]) {
-                count += 1;
-                countNodes(graph,x,vis,count);
-            }
+    typedef long long ll;
+    ll dfs(vector<vector<int>> &graph,int i,vector<int> &vis){
+        vis[i]=1;
+        ll mx=0;
+        for(auto x:graph[i]){
+            if(!vis[x])mx += 1LL+dfs(graph,x,vis);
         }
+        return mx;
     }
-    
-    long long countPairs(int n, vector<vector<int>>& edges) {
+    long long countPairs(int n, vector<vector<int>>& v) {
         vector<vector<int>> graph(n);
-        for(auto edge : edges) {
-            graph[edge[0]].push_back(edge[1]);
-            graph[edge[1]].push_back(edge[0]);
+        for(auto vv:v){
+            graph[vv[0]].push_back(vv[1]);
+            graph[vv[1]].push_back(vv[0]);
         }
-        vector<bool> vis(n);
-        vector<int> res;
-        for(int i = 0; i < n; i += 1) {
-            int count = 0;
-            if(!vis[i]) {
-                countNodes(graph,i,vis,count);
-                res.push_back(count + 1);
+        vector<int> vis(n);
+        ll ans=0,k=0;
+        for(int i = 0;i < n;i += 1){
+            ll val=0;
+            if(!vis[i]){
+                val=1 + dfs(graph,i,vis);
+                // cout<<val<<" ";
+                ll cnt = 0;
+                k += val;
+                ans += (n*1LL-k)*val;
             }
+            
         }
-        n = res.size();
-        if(n == 1) return 0;
-        vector<ll> temp(n);
-        // for(int x : res) cout<<x<<' ';
-        for(int i = 1; i < n; i += 1) temp[i] += (temp[i - 1] + res[i - 1]);
-        ll k = res.back();
-        for(int i = n - 2; i >= 0; i -= 1) {
-            temp[i] = temp[i] + k;
-            k += res[i];
-        }
-        
-        ll ans = 1;
-        for(int i = 0; i < n; i += 1) {
-            ans += (ll)(res[i] * temp[i]);
-        }
-        return ans/2LL;
+        return ans;
     }
 };
