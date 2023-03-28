@@ -9,8 +9,10 @@ public:
         ans = min({ans,costs[1] + func(days,costs,indexAfterSevenDayPass, dp),costs[2] + func(days,costs,indexAfterThirtyDayPass, dp)});
         return dp[i] = ans;
     }
+    
+    
     int mincostTickets(vector<int>& days, vector<int>& costs) {
-        sort(days.begin(),days.end());
+        // sort(days.begin(),days.end());
         int n = days.size();
         vector<int> dp(n, -1);
         return func(days,costs,0,dp);
