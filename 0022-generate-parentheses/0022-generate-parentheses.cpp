@@ -6,14 +6,8 @@ public:
             ans.push_back(res);
             return ;
         }
-        if(open < 0 || close < 0) return ;
-        if(open > 0) {
-            res.push_back('(');
-            dfs(ans,res,open - 1,close);
-            res.pop_back();
-        }
-        res.push_back(')');
-        if(close > open)dfs(ans,res,open,close - 1);
+        if(open > 0) dfs(ans,res + "(",open - 1,close);
+        if(close > open)dfs(ans,res + ")",open,close - 1);
     }
     
     vector<string> generateParenthesis(int n) {
