@@ -21,24 +21,19 @@ public:
         }
         return prev;
     }
-    
     int pairSum(ListNode* head) {
         ListNode *fast = head, *slow = head, *prev;
         while(fast && fast->next) {
-            prev = slow;
             slow = slow->next;
             fast = fast->next->next;
         }
-        prev->next = rev(slow);
-        slow = prev->next;
-        fast = head;
+        prev = rev(slow);
         int ans = 0;
-        while(slow) {
-            ans = max(ans,slow->val + fast->val);
-            slow = slow->next;
-            fast = fast->next;
+        while(prev) {
+            ans = max(ans,prev->val + head->val);
+            prev = prev->next;
+            head = head->next;
         }
         return ans;
-        
     }
 };
