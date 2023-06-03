@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select distinct(machine_id),round(((select sum(timestamp) from activity where machine_id = a.machine_id and activity_type = "end") - (select sum(timestamp) from activity where machine_id = a.machine_id and activity_type = "start"))/(select count(machine_id) from activity where machine_id = a.machine_id and activity_type = "start"),3) as processing_time from activity as a;
