@@ -4,10 +4,9 @@ public:
         int ans = 0;
         while(c) {
             if(c & 1) {
-                if(!((a & 1) || (b & 1))) ans += 1;
+                 ans += !((a & 1) || (b & 1));
             } else {
-                 if(a & 1) ans += 1;
-                if(b & 1) ans += 1;
+                 ans += (a & 1) + (b & 1);
             }
             a >>= 1;
             b >>= 1;
