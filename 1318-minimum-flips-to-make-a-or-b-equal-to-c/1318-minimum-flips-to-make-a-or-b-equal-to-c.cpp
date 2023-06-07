@@ -2,7 +2,7 @@ class Solution {
 public:
     int minFlips(int a, int b, int c) {
         int ans = 0;
-        while(c) {
+        while(c || a || b) {
             if(c & 1) {
                  ans += !((a & 1) || (b & 1));
             } else {
@@ -12,8 +12,6 @@ public:
             b >>= 1;
             c >>= 1;
         }
-        ans += __builtin_popcount(a);
-        ans += __builtin_popcount(b);
         return ans;
     }
 };
