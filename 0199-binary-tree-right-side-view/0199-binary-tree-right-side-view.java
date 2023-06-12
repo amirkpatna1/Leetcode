@@ -1,36 +1,33 @@
 /**
  * Definition for a binary tree node.
- * struct TreeNode {
+ * public class TreeNode {
  *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
  */
 class Solution {
-public:
-    void dfs(vector<int> &ans,TreeNode *root,int height) {
-        if(!root) return ;
-        dfs(ans,root->left,height + 1);
-        dfs(ans,root->right, height + 1);
-        ans[height] = root->val;
+    public List<Integer> rightSideView(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        List<Integer> ls = new ArrayList<Integer>();
+        if(root == null) return ls;
+        while(q.size() != 0) {
+            int n = q.size();
+            for(int i = 0; i < n; i += 1) {
+                TreeNode node = q.poll();
+                if(i == n - 1) ls.add(node.val);
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
+            }
+        }
+        return ls;
     }
-    
-    void getMaxHeight(TreeNode *root,int height,int &maxHeight) {
-        if(!root) return ;
-        getMaxHeight(root->left,height + 1, maxHeight);
-        getMaxHeight(root->right,height + 1, maxHeight);
-        maxHeight = max(maxHeight, height);
-    }
-    
-    vector<int> rightSideView(TreeNode* root) {
-        if(!root)return {};
-        int maxHeight = 0;
-        getMaxHeight(root,0,maxHeight);
-        vector<int> ans(maxHeight + 1);
-        dfs(ans,root,0);
-        return ans;
-    }
-};
+}
