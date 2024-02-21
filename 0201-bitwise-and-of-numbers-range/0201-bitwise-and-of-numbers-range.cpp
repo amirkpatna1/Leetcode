@@ -7,9 +7,22 @@ public:
         int leftBit = log2(left);
         int rightBit = log2(right);
         if(rightBit > leftBit) return 0;
-        for(long i = left; i <= right; i += 1) {
-            ans = (ans & i);
+        int res = 0;
+        for(int i = leftBit; i >= 0; i -= 1) {
+            if(!(((1 << i) & left) ^ ((1 << i) & right))) res |= ((1 << i) & left);
+            else break;
         }
+        return min(res, ans);
+        // 011
+        // 111
+        
+        // 011
+        // 100
+        // 101
+        // 110
+        // 111
+        // 1001
+        // 1100
         return ans;
     }
 };
