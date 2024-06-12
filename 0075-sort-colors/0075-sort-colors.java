@@ -4,15 +4,15 @@ class Solution {
         int j = 0;
         int k = nums.length-1;
         while(i <= k){
-            if(nums[i] == 1){
+            if(nums[i] == 2) {
+                swap(nums,i,k);
+                k--;
+            } else if(nums[i] == 1){
                 i++;
-            } else if(nums[i] == 0){
+            } else {
                 swap(nums,i,j);
                 i++;
                 j++;
-            } else{
-                swap(nums,i,k);
-                k--;
             }
         }
     }
