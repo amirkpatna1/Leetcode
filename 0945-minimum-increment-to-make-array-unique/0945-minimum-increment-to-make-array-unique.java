@@ -6,9 +6,7 @@ class Solution {
         int ans = 0;
         for(int i = 1; i < n; i += 1) {
             ans += Math.max(curr - v[i] + 1, 0);
-            curr += 1;
-            if(v[i] > curr) curr = v[i];
-            
+            curr = Math.max(curr + 1, v[i]);
         }
         return ans;
     }
