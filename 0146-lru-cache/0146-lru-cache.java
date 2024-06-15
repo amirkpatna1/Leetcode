@@ -33,6 +33,7 @@ class LRUCache {
             Node prev = node.prev;
             Node next = node.next;
             prev.next = next;
+            node = null;
             if(next != null) {
                 next.prev = prev;
             } else
