@@ -30,14 +30,12 @@ class LRUCache {
             Node node = keyNodeMap.get(key);
             keyNodeMap.remove(key);
             keyValueMap.remove(key);
-            Node prev = node.prev;
-            Node next = node.next;
-            prev.next = next;
-            node = null;
-            if(next != null) {
-                next.prev = prev;
+            node.prev.next = node.next;
+            if(node.next != null) {
+                node.next.prev = node.prev;
             } else
-                tail = prev;
+                tail = node.prev;
+            node = null;
         }
     }
     
