@@ -1,7 +1,6 @@
 class Solution {
     public long maximumTotalDamage(int[] p) {
         Map<Integer, Integer> keyToFreq = new HashMap<>();
-        Map<Integer, Integer> keyToIndex = new HashMap<>();
         for(int i = 0; i < p.length; i += 1) {
             keyToFreq.put(p[i], keyToFreq.getOrDefault(p[i], 0) + 1);
         }
@@ -12,10 +11,6 @@ class Solution {
             v[idx++] = key;
         }
         Arrays.sort(v);
-        
-        for(int i = 0; i < n; i += 1) {
-            keyToIndex.put(v[i], i);
-        }
         
         // dp[i] --> max damage after i th index
         long[] dp = new long[n];
