@@ -17,12 +17,11 @@ class Solution {
         
         for(int i = 0; i < n; i += 1) {
             long temp = 0;
-            for(int j = Math.max(i - 6, 0); j < i; j += 1) {
+            for(int j = Math.max(i - 5, 0); j < i; j += 1) {
                 if(v[i] - v[j] > 2)
                     temp = Math.max(temp, dp[j]);
             }
             dp[i] = (long)v[i] * (long)keyToFreq.get(v[i]) + temp;
-            
         }
 
         // [7,1,6,6] --> 1, 6, 7
