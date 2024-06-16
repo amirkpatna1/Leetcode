@@ -1,15 +1,13 @@
 class Solution {
     
-    class Pair {
+    static class Pair {
         int row;
         int col;
-        
         Pair(int row, int col) {
             this.row = row;
             this.col = col;
         }
     }
-    
     public int orangesRotting(int[][] v) {
         
         Queue<Pair> q = new LinkedList<>();
