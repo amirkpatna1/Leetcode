@@ -16,8 +16,6 @@ class Solution {
         long[] dp = new long[n];
         
         for(int i = 0; i < n; i += 1) {
-            long fp = (i - 1 >= 0 && v[i] - v[i - 1] > 2) ? dp[i - 1] : 0;
-            long sp = (i - 2 >= 0 && v[i] - v[i - 2] > 2) ? dp[i - 2] : 0;
             long temp = 0;
             for(int j = Math.max(i - 6, 0); j < i; j += 1) {
                 if(v[i] - v[j] > 2)
