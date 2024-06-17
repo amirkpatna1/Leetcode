@@ -4,7 +4,7 @@ class ZeroEvenOdd {
     private Lock lock = new ReentrantLock();
     private Condition firstCondition = lock.newCondition();
     private Condition secondCondition = lock.newCondition();
-    private Condition thirdCondition = lock.newCondition();
+    // private Condition thirdCondition = lock.newCondition();
     private boolean isZerothTurn = true;
     private boolean isOddTurn = false;
     
