@@ -37,7 +37,6 @@ class Solution {
                 if(node.right != null) q.add(node.right);
                 if(backNode.containsKey(node)) q.add(backNode.get(node));
             }
-            if(k == 0) return ans;
             k -= 1;
         }
         return ans;
