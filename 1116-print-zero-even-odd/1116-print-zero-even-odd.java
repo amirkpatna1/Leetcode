@@ -4,7 +4,7 @@ class ZeroEvenOdd {
     private Lock lock = new ReentrantLock();
     private Condition firstCondition = lock.newCondition();
     private Condition secondCondition = lock.newCondition();
-    // private Condition thirdCondition = lock.newCondition();
+    private Condition thirdCondition = lock.newCondition();
     private boolean isZerothTurn = true;
     private boolean isOddTurn = false;
     
@@ -23,7 +23,8 @@ class ZeroEvenOdd {
                 printNumber.accept(0);
                 isZerothTurn = false;
                 isOddTurn = !isOddTurn;
-                secondCondition.signal();
+                if(isOddTurn) thirdCondition.signal();
+                else secondCondition.signal();
             }
             
         } finally {
@@ -59,7 +60,7 @@ class ZeroEvenOdd {
         try{
             for(int i = 1; i <= n; i += 2) {
                 while(!isOddTurn || isZerothTurn) {
-                    secondCondition.await();
+                    thirdCondition.await();
                 }
                 printNumber.accept(i);
                 isZerothTurn = true;
